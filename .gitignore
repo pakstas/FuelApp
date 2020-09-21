@@ -1,10 +1,9 @@
 .DS_Store
 /node_modules/
 /dist
-/src/services
 
 # firebase init
-src/services/firebase.js
+src/services/
 
 
 # local env files
