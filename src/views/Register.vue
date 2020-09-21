@@ -92,9 +92,9 @@ export default {
 <style scoped>
 .register {
   width: 350px;
-  margin: 20% auto;
+  margin: 5vh auto;
   background: rgba(255, 255, 255, 0.55);
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 
 .title {

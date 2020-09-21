@@ -1,16 +1,21 @@
 <template>
   <header>
-    <div class="container">
-      <img src="../assets/img/Fuel_Logo.png" alt="Company logo" />
-      <nav>
-        <span v-if="userAuth">
-          <a v-on:click="signOut()">Sign Out {{ "(" + email + ")" }}</a>
-        </span>
-        <span v-else>
-          <router-link to="/register">Register</router-link>
-          <router-link to="/login">Login</router-link>
-        </span>
-      </nav>
+    <div class="wrapper">
+      <div class="nav">
+        <img src="../assets/img/Fuel_Logo.png" alt="Company logo" />
+        <nav>
+          <span v-if="userAuth">
+            <a v-on:click="signOut()">Sign Out {{ "(" + email + ")" }}</a>
+          </span>
+          <span v-else>
+            <router-link to="/register">Register</router-link>
+            <router-link to="/login">Login</router-link>
+          </span>
+        </nav>
+      </div>
+      <div class="page-title" v-if="userAuth">
+        <h1 class="title">{{ this.$route.name }}</h1>
+      </div>
     </div>
   </header>
 </template>
@@ -47,26 +52,45 @@ export default {
 </script>
 
 <style scoped>
-div.container {
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-}
-
-.container {
-  width: 768px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.55);
+  /* background: rgba(255, 255, 255, 0.55); */
+  background: rgb(147, 224, 243);
   border-radius: 0px 0px 5px 5px;
 }
-.container > img {
+
+.nav > img {
   height: 40px;
 }
 
-a {
+.nav a {
   text-decoration: none;
   color: rgb(0, 0, 0);
   margin-right: 5px;
+  margin-left: 10px;
+}
+.nav a:hover {
+  text-decoration: underline;
+  box-shadow: rgba(255, 255, 255, 0.55);
+}
+
+.nav a:last-child {
+  margin-right: 0px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper .page-title {
+  height: 200px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.55);
 }
 </style>
