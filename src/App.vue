@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link class="button is-dark" to="/">Home</router-link>
-      <router-link class="button is-dark" to="/about">About</router-link>
-      <router-link class="button is-dark" to="/login">Login</router-link>
-      <router-link class="button is-dark" to="/register">Register</router-link>
-    </div>
+    <Header />
     <router-view />
   </div>
 </template>
+
+<script>
+import Header from "./components/Header";
+
+export default {
+  components: {
+    Header,
+  },
+};
+</script>
 
 <style>
 body,
