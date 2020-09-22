@@ -20,12 +20,12 @@
 
           <div class="card-content">
             <div class="content">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, amet similique? Modi magnam deleniti architecto est inventore iste, non eum totam impedit quia amet. Harum animi architecto assumenda vero reiciendis.
-              <a
-                href="#"
-              >#css</a>
-              <a href="#">#responsive</a>
+              <div class="tags has-addons">
+                <span class="tag is-large">Year:</span>
+                <span class="tag is-large is-dark">{{car.year}}</span>
+              </div>
             </div>
+            <div class="content">asdasd</div>
           </div>
 
           <footer class="card-footer">
@@ -78,5 +78,8 @@ export default {
 .cars {
   display: flex;
   flex-wrap: wrap;
+}
+.car {
+  width: 100%;
 }
 </style>
