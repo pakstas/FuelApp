@@ -27,24 +27,17 @@
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input
-              class="input"
-              v-model="password"
-              type="password"
-              placeholder="Password"
-            />
+            <input class="input" v-model="password" type="password" placeholder="Password" />
           </div>
         </div>
 
         <div class="field">
           <div class="control">
             <button
-              class="button is-dark"
+              class="button is-dark is-fullwidth"
               :class="loading && 'is-loading'"
               type="submit"
-            >
-              Register
-            </button>
+            >Register</button>
           </div>
         </div>
       </form>
@@ -98,7 +91,7 @@ export default {
 }
 
 .title {
-  background: black;
+  background: rgba(7, 7, 7, 0.76);
   color: white;
   padding: 10px 20px 10px 20px;
   margin-bottom: 5px;

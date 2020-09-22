@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <div class="wrapper"><Header /> <router-view /></div>
+    <div class="container">
+      <Header />
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -25,9 +28,5 @@ body {
 <style scoped>
 #app {
   min-height: 100vh;
-}
-.wrapper {
-  width: 768px;
-  margin: 0 auto;
 }
 </style>
