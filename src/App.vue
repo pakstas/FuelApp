@@ -1,18 +1,24 @@
 <template>
   <div id="app">
     <div class="container">
-      <Header />
-      <router-view />
+      <div class="main">
+        <Header />
+        <router-view />
+      </div>
+
+      <div class="foot-end"><Footer /></div>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default {
   components: {
     Header,
+    Footer,
   },
 };
 </script>
@@ -26,7 +32,11 @@ body {
 }
 </style>
 <style scoped>
-#app {
-  min-height: 100vh;
+/* #app {
+  min-height: 100%;
+} */
+.container > .main {
+  min-height: calc(100vh - 50px);
+  width: 100%;
 }
 </style>

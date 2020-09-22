@@ -3,6 +3,7 @@
     <div class="wrapper">
       <div class="nav">
         <img src="../assets/img/Fuel_Logo.png" alt="Company logo" />
+
         <nav>
           <span v-if="userAuth">
             <a v-on:click="signOut()">Sign Out {{ "(" + email + ")" }}</a>
@@ -62,7 +63,7 @@ export default {
   border-radius: 0px 0px 5px 5px;
 }
 
-.nav > img {
+.nav img {
   height: 40px;
 }
 
