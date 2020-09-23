@@ -92,6 +92,6 @@ nav {
   padding: 5px;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.55);
+  /* background: rgba(255, 255, 255, 0.55); */
 }
 </style>

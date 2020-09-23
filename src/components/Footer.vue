@@ -22,6 +22,6 @@ h1 {
 }
 section {
   height: 50px;
-  background-color: rgb(0, 0, 0, 0.95);
+  background-color: rgb(0, 0, 0, 0.8);
 }
 </style>
