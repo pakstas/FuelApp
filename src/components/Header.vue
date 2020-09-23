@@ -75,7 +75,7 @@ export default {
 }
 .nav a:hover {
   text-decoration: underline;
-  box-shadow: rgba(255, 255, 255, 0.55);
+  box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.55);
 }
 
 .nav a:last-child {

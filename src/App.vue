@@ -38,5 +38,6 @@ body {
 .container > .main {
   min-height: calc(100vh - 50px);
   width: 100%;
+  background: rgb(255, 255, 255, 0.5);
 }
 </style>

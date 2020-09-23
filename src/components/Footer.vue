@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-dark">
+  <section class="hero">
     <div class="hero-foot">
       <div class="container">
         <h1 class="subtitle">Copyright "Akmeninės dirbtuvės" @ 2020 m.</h1>
@@ -22,5 +22,6 @@ h1 {
 }
 section {
   height: 50px;
+  background-color: rgb(0, 0, 0, 0.95);
 }
 </style>
