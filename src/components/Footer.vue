@@ -1,11 +1,11 @@
 <template>
-  <section class="hero">
+  <div class="hero">
     <div class="hero-foot">
-      <div class="container">
-        <h1 class="subtitle">Copyright "Akmeninės dirbtuvės" @ 2020 m.</h1>
-      </div>
+      <span class="is-size-7 has-text-light">
+        Copyright "Akmeninės dirbtuvės" @ 2020 m.
+      </span>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -15,13 +15,13 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  text-align: center;
-  padding: 10px;
-  color: #eee;
-}
-section {
+.hero {
   height: 50px;
   background-color: rgb(0, 0, 0, 0.8);
+}
+
+.hero-foot {
+  padding: 12.5px;
+  text-align: center;
 }
 </style>
