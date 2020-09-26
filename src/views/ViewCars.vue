@@ -2,7 +2,7 @@
   <div class="columns is-multiline">
     <div
       class="column is-one-third-desktop is-half-tablet"
-      v-if="!(cars.length != 0)"
+      v-if="!(cars.length !== 0)"
     >
       <span>You haven't added any cars, please start by adding one.</span>
       <router-link to="/addcar"
@@ -18,8 +18,11 @@
         <div class="card-content car-title">
           <div class="media">
             <div class="media-content">
-              <p class="title is-4">{{ car.brand }}</p>
-              <p class="subtitle is-6">{{ car.model + " " + car.id }}</p>
+              <p class="title is-4">{{ car.brand + " " + car.model }}</p>
+              <div class="tags are-large">
+                <span class="tag">{{ car.id }}</span>
+                <span class="tag">{{ car.id }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -34,18 +37,15 @@
         </div>
 
         <div class="card-content">
-          <div class="content">
-            <div class="tags has-addons">
-              <span class="tag is-large">Year:</span>
-              <span class="tag is-large is-dark">{{ car.year }}</span>
-            </div>
-          </div>
-          <div class="content">asdasd</div>
+          <div class="content">Fuel average: 8.7 l/100km</div>
+          <div class="content">Fuel average (last): 7.4 l/100km</div>
+          <div class="content">Last fuel price: 1.23 eur/l</div>
+          <div class="content">Last filling date: 2020-09-23</div>
         </div>
 
         <footer class="card-footer">
-          <a href="#" class="card-footer-item">Edit</a>
-          <a href="#" class="card-footer-item">Delete</a>
+          <a href="#" class="card-footer-item">View Fuel</a>
+          <a href="#" class="card-footer-item">Edit Car</a>
         </footer>
       </div>
     </div>
@@ -107,6 +107,10 @@ div > .card {
 }
 
 .columns:last-child {
+  margin-bottom: 0px;
+}
+
+.card-content > div.content {
   margin-bottom: 0px;
 }
 </style>
