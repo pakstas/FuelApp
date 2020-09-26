@@ -27,7 +27,12 @@
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input class="input" v-model="password" type="password" placeholder="Password" />
+            <input
+              class="input"
+              v-model="password"
+              type="password"
+              placeholder="Password"
+            />
           </div>
         </div>
 
@@ -37,7 +42,9 @@
               class="button is-dark is-fullwidth"
               :class="loading && 'is-loading'"
               type="submit"
-            >Register</button>
+            >
+              Register
+            </button>
           </div>
         </div>
       </form>
