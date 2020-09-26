@@ -53,45 +53,23 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 export default {
   name: "ViewCars",
   components: {},
   data() {
     return {
-      carbs: [],
-      cars: [
-        {
-          brand: "BMW",
-          model: "X6",
-          year: 1999,
-          id: 1,
-          fuel: 5,
-        },
-        {
-          brand: "BMW",
-          model: "X6",
-          year: 1999,
-          id: 2,
-          fuel: 5,
-        },
-        {
-          brand: "BMW",
-          model: "X6",
-          year: 1999,
-          id: 3,
-          fuel: 5,
-        },
-        {
-          brand: "BMW",
-          model: "X6",
-          year: 1999,
-          id: 4,
-          fuel: 5,
-        },
-      ],
+      cars: [],
     };
+  },
+  beforeMount() {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(firebase.auth().currentUser.uid);
   },
 };
 </script>
