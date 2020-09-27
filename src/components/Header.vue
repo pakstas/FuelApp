@@ -6,6 +6,9 @@
 
         <nav>
           <span v-if="userAuth">
+            <router-link to="/addcar">Add Car</router-link>
+            <router-link to="/">View Cars</router-link>
+            <router-link to="/addfuel">Add Fuel</router-link>
             <a v-on:click="signOut()">Sign Out {{ "(" + email + ")" }}</a>
           </span>
           <span v-else>
@@ -30,6 +33,7 @@ export default {
     return {
       userAuth: "",
       email: "",
+      uid: "",
     };
   },
   methods: {
@@ -37,6 +41,8 @@ export default {
       firebase.auth().signOut();
       this.$router.push("/login");
       this.userAuth = false;
+      localStorage.removeItem("userid");
+      this.uid = "";
     },
   },
   beforeMount() {
@@ -44,8 +50,11 @@ export default {
       if (user) {
         this.userAuth = true;
         this.email = firebase.auth().currentUser.email;
+        this.uid = firebase.auth().currentUser.uid;
+        localStorage.setItem("userid", this.uid);
       } else {
         this.userAuth = false;
+        localStorage.removeItem("userid");
       }
     });
   },

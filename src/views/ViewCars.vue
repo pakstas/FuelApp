@@ -20,8 +20,8 @@
             <div class="media-content">
               <p class="title is-4">{{ car.brand + " " + car.model }}</p>
               <div class="tags are-large">
-                <span class="tag">{{ car.id }}</span>
-                <span class="tag">{{ car.id }}</span>
+                <span class="tag">{{ car.year }}</span>
+                <span class="tag">{{ car.fueltype }}</span>
               </div>
             </div>
           </div>
@@ -29,10 +29,7 @@
 
         <div class="card-image">
           <figure class="image is-4by3">
-            <img
-              src="https://bulma.io/images/placeholders/1280x960.png"
-              alt="Placeholder image"
-            />
+            <img :src="car.image" :alt="car.brand" />
           </figure>
         </div>
 
@@ -63,13 +60,39 @@ export default {
   data() {
     return {
       cars: [],
+      useruid: "",
     };
   },
+  methods: {},
   beforeMount() {
+    this.useruid = localStorage.getItem("userid");
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.useruid = firebase.auth().currentUser.uid;
+        console.log(this.useruid);
+      } else {
+        this.useruid = false;
+      }
+    });
+
     firebase
       .firestore()
       .collection("users")
-      .doc(firebase.auth().currentUser.uid);
+      .doc(this.useruid)
+      .collection("cars")
+      .get()
+      .then((snapshot) =>
+        snapshot.docs.forEach((doc) => {
+          this.cars.push({
+            id: doc.id,
+            image: doc.data().image,
+            brand: doc.data().brand,
+            model: doc.data().model,
+            year: doc.data().year,
+            fueltype: doc.data().fueltype,
+          });
+        })
+      );
   },
 };
 </script>
