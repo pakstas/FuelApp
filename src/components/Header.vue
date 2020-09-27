@@ -8,7 +8,6 @@
           <span v-if="userAuth">
             <router-link to="/addcar">Add Car</router-link>
             <router-link to="/">View Cars</router-link>
-            <router-link to="/addfuel">Add Fuel</router-link>
             <a v-on:click="signOut()">Sign Out {{ "(" + email + ")" }}</a>
           </span>
           <span v-else>

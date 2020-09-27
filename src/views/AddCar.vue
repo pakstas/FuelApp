@@ -67,7 +67,7 @@
         </div>
 
         <div class="control">
-          <button class="button is-dark" type="submit">Add this!</button>
+          <button class="button is-dark" type="submit">Add Car!</button>
         </div>
       </form>
     </div>

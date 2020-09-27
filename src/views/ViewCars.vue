@@ -2,15 +2,6 @@
   <div class="columns is-multiline">
     <div
       class="column is-one-third-desktop is-half-tablet"
-      v-if="!(cars.length !== 0)"
-    >
-      <span>You haven't added any cars, please start by adding one.</span>
-      <router-link to="/addcar"
-        ><button class="button is-dark">Add Car</button></router-link
-      >
-    </div>
-    <div
-      class="column is-one-third-desktop is-half-tablet"
       v-for="car in cars"
       :key="car.id"
     >
@@ -33,18 +24,24 @@
           </figure>
         </div>
 
-        <div class="card-content">
-          <div class="content">Fuel average: 8.7 l/100km</div>
-          <div class="content">Fuel average (last): 7.4 l/100km</div>
-          <div class="content">Last fuel price: 1.23 eur/l</div>
-          <div class="content">Last filling date: 2020-09-23</div>
-        </div>
-
         <footer class="card-footer">
-          <a href="#" class="card-footer-item">View Fuel</a>
-          <a href="#" class="card-footer-item">Edit Car</a>
+          <router-link :to="'/viewfuel/' + car.id" class="card-footer-item"
+            >Fuel Log</router-link
+          >
+          <router-link :to="'/editCar/' + car.id" class="card-footer-item"
+            >Edit Car</router-link
+          >
         </footer>
       </div>
+    </div>
+    <div
+      class="column is-one-third-desktop is-half-tablet"
+      v-if="!(cars.length !== 0)"
+    >
+      <span>You haven't added any cars, please start by adding one.</span>
+      <router-link to="/addcar"
+        ><button class="button is-dark">Add Car</button></router-link
+      >
     </div>
   </div>
 </template>
@@ -66,14 +63,14 @@ export default {
   methods: {},
   beforeMount() {
     this.useruid = localStorage.getItem("userid");
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.useruid = firebase.auth().currentUser.uid;
-        console.log(this.useruid);
-      } else {
-        this.useruid = false;
-      }
-    });
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.useruid = firebase.auth().currentUser.uid;
+    //     console.log(this.useruid);
+    //   } else {
+    //     this.useruid = false;
+    //   }
+    // });
 
     firebase
       .firestore()
@@ -92,7 +89,8 @@ export default {
             fueltype: doc.data().fueltype,
           });
         })
-      );
+      )
+      .catch((error) => console.log(error));
   },
 };
 </script>
