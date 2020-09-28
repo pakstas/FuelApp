@@ -4,6 +4,8 @@ import router from "./router";
 import "./services/firebase";
 import "normalize.css";
 import "bulma/css/bulma.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 Vue.config.productionTip = false;
 

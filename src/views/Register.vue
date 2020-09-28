@@ -14,25 +14,31 @@
       <form v-on:submit.prevent="register">
         <div class="field">
           <label class="label">Email</label>
-          <div class="control">
+          <div class="control has-icons-left">
             <input
               class="input"
               type="email"
               v-model="email"
               placeholder="e.g. alexsmith@gmail.com"
             />
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
           </div>
         </div>
 
         <div class="field">
           <label class="label">Password</label>
-          <div class="control">
+          <div class="control has-icons-left">
             <input
               class="input"
               v-model="password"
               type="password"
               placeholder="Password"
             />
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
           </div>
         </div>
 
