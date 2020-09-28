@@ -82,7 +82,7 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
-          () => this.$router.push("/login"),
+          () => this.$router.push("/"),
           (error) => {
             this.error = true;
             this.errorMessage = error.message;
