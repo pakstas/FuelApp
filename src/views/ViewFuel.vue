@@ -92,7 +92,24 @@ export default {
       allfuelSort: [],
     };
   },
-  methods: {},
+  methods: {
+    remFuel(item) {
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.useruid)
+        .collection("cars")
+        .doc(this.carid)
+        .collection("fuel")
+        .doc(item)
+        .delete()
+        .then(() => {
+          alert("Fuel deleted");
+          this.allfuelSort = this.allfuelSort.filter((a) => a.id !== item);
+        })
+        .catch((error) => alert(error));
+    },
+  },
   beforeMount() {
     this.useruid = localStorage.getItem("userid");
     this.carid = this.$route.params.id;

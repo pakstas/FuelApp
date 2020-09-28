@@ -10,6 +10,8 @@
               type="text"
               v-model="date"
               placeholder="e.g. 202002151305"
+              minlength="12"
+              maxlength="12"
               required
             />
           </div>
@@ -28,6 +30,7 @@
                 type="number"
                 v-model="odometer"
                 placeholder="e.g. 2500"
+                min="0"
                 required
               />
             </div>
@@ -48,6 +51,7 @@
                 class="input"
                 type="number"
                 step="0.01"
+                min="0"
                 v-model="fuelqty"
                 placeholder="e.g. 42.24"
                 required
@@ -67,6 +71,7 @@
                 class="input"
                 type="number"
                 step="0.01"
+                min="0"
                 v-model="price"
                 placeholder="e.g. 42.24"
                 required
