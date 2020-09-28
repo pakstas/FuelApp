@@ -9,10 +9,21 @@
         <div class="card-content car-title">
           <div class="media">
             <div class="media-content">
-              <p class="title is-4">{{ car.brand + " " + car.model }}</p>
+              <p class="title is-4">
+                {{
+                  car.brand.toUpperCase().slice(0, 1) +
+                  car.brand.toLowerCase().slice(1) +
+                  " " +
+                  car.model.toUpperCase().slice(0, 1) +
+                  car.model.toLowerCase().slice(1)
+                }}
+              </p>
               <div class="tags are-large">
                 <span class="tag">{{ car.year }}</span>
-                <span class="tag">{{ car.fueltype }}</span>
+                <span class="tag">{{
+                  car.fueltype.toUpperCase().slice(0, 1) +
+                  car.fueltype.toLowerCase().slice(1)
+                }}</span>
               </div>
             </div>
           </div>

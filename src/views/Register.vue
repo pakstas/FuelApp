@@ -81,15 +81,12 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(
-          () => this.$router.push("/"),
-          (error) => {
-            this.error = true;
-            this.errorMessage = error.message;
-            this.errorType = "is-danger";
-            this.loading = false;
-          }
-        );
+        .catch((error) => {
+          this.error = true;
+          this.errorMessage = error.message;
+          this.errorType = "is-danger";
+          this.loading = false;
+        });
     },
   },
 };
