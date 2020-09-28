@@ -13,7 +13,10 @@
               required
             />
           </div>
-          <p class="help">Last date: {{ lastlog[0].date }}</p>
+          <p class="help">
+            Last date:
+            {{ lastlog.length !== 0 ? lastlog[0].date : "No records yet" }}
+          </p>
         </div>
 
         <div class="field">
@@ -32,7 +35,9 @@
               <a class="button is-static">km</a>
             </div>
           </div>
-          <p class="help">Last odometer: {{ lastlog[0].km }} km</p>
+          <p class="help">
+            Last odometer: {{ lastlog.length !== 0 ? lastlog[0].km : "0" }} km
+          </p>
         </div>
 
         <div class="field">
@@ -110,6 +115,7 @@ export default {
       price: "",
       tank: "",
       lastlog: [],
+      datetime: "",
     };
   },
   methods: {
