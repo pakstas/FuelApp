@@ -22,13 +22,9 @@
                     car.fueltype.toUpperCase().slice(0, 1) +
                       car.fueltype.toLowerCase().slice(1)
                 }}</span>
-                <span
-                  v-if="
-                    this.fuelAvg.toLowerCase() === this.fuelAvg.toUpperCase()
-                  "
-                  class="tag"
-                  >{{ "Fuel average: " + this.fuelAvg + " l/km" }}</span
-                >
+                <span v-if="this.fuelDisplay" class="tag">{{
+                  "Fuel average: " + this.fuelAvg() + " l/km"
+                }}</span>
               </div>
             </div>
           </div>
@@ -110,13 +106,37 @@ export default {
       load: "is-loading",
       allfuel: [],
       allfuelSort: [],
+      fuelDisplay: false,
     };
   },
   computed: {
+    // fuelAvg() {
+    //   let s = this.allfuelSort;
+    //   let result;
+    //   if (this.allfuelSort.length !== 0) {
+    //     let a = Number(s.findIndex((a) => a.tank === "full"));
+    //     let b = Number(
+    //       s
+    //         .map((t, index) => (t.tank === "full" ? index : ""))
+    //         .filter((x) => x)
+    //         .reverse()[0]
+    //     );
+    //     result =
+    //       (s.slice(a, b).reduce((ac, va) => ac + Number(va.fuelqty), 0) * 100) /
+    //       (s[a].odometer - s[b].odometer);
+    //     this.fuelDisplay = true;
+    //     return result.toFixed(2);
+    //   } else {
+    //     return "";
+    //   }
+    // },
+  },
+  methods: {
     fuelAvg() {
       let s = this.allfuelSort;
+      let sl = s.filter((t) => t.tank === "full").length;
       let result;
-      if (this.allfuelSort.length !== 0) {
+      if (sl > 1) {
         let a = Number(s.findIndex((a) => a.tank === "full"));
         let b = Number(
           s
@@ -124,16 +144,20 @@ export default {
             .filter((x) => x)
             .reverse()[0]
         );
-        result =
+        result = Number(
           (s.slice(a, b).reduce((ac, va) => ac + Number(va.fuelqty), 0) * 100) /
-          (s[a].odometer - s[b].odometer);
-        return result.toFixed(2);
+            (s[a].odometer - s[b].odometer)
+        ).toFixed(2);
+        result.toLowerCase() === result.toUpperCase()
+          ? (this.fuelDisplay = true)
+          : (this.fuelDisplay = false);
+        return result;
+      } else if (sl === 1) {
+        this.fuelDisplay = false;
       } else {
-        return "";
+        this.fuelDisplay = false;
       }
     },
-  },
-  methods: {
     getTrip(gid) {
       let tempA = this.allfuelSort.findIndex((a) => a.id === gid);
       let tempB =
@@ -201,7 +225,8 @@ export default {
             this.allfuelSort = this.allfuel.sort(
               (a, b) => b.odometer - a.odometer
             );
-          });
+          })
+          .then(() => this.fuelAvg());
       });
   },
 };
