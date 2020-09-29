@@ -8,23 +8,27 @@
               <p class="title is-4">
                 {{
                   car.brand &&
-                  car.brand.toUpperCase().slice(0, 1) +
-                    car.brand.toLowerCase().slice(1) +
-                    " " +
-                    car.model.toUpperCase().slice(0, 1) +
-                    car.model.toLowerCase().slice(1)
+                    car.brand.toUpperCase().slice(0, 1) +
+                      car.brand.toLowerCase().slice(1) +
+                      " " +
+                      car.model.toUpperCase().slice(0, 1) +
+                      car.model.toLowerCase().slice(1)
                 }}
               </p>
               <div class="tags are-large">
                 <span class="tag">{{ car.year }}</span>
                 <span class="tag">{{
                   car.fueltype &&
-                  car.fueltype.toUpperCase().slice(0, 1) +
-                    car.fueltype.toLowerCase().slice(1)
+                    car.fueltype.toUpperCase().slice(0, 1) +
+                      car.fueltype.toLowerCase().slice(1)
                 }}</span>
-                <span class="tag">{{
-                  "Fuel average: " + this.fuelAvg + " l/km"
-                }}</span>
+                <span
+                  v-if="
+                    this.fuelAvg.toLowerCase() === this.fuelAvg.toUpperCase()
+                  "
+                  class="tag"
+                  >{{ "Fuel average: " + this.fuelAvg + " l/km" }}</span
+                >
               </div>
             </div>
           </div>
@@ -110,16 +114,32 @@ export default {
   },
   computed: {
     fuelAvg() {
-      let a = this.allfuelSort.findIndex((a) => a.tank === "full");
-      let b = this.allfuelSort.filter((t, index) => t.tank === "full" && index);
-      console.log(a + " " + b);
-      return "Aciu";
+      let s = this.allfuelSort;
+      let result;
+      if (this.allfuelSort.length !== 0) {
+        let a = Number(s.findIndex((a) => a.tank === "full"));
+        let b = Number(
+          s
+            .map((t, index) => (t.tank === "full" ? index : ""))
+            .filter((x) => x)
+            .reverse()[0]
+        );
+        result =
+          (s.slice(a, b).reduce((ac, va) => ac + Number(va.fuelqty), 0) * 100) /
+          (s[a].odometer - s[b].odometer);
+        return result.toFixed(2);
+      } else {
+        return "";
+      }
     },
   },
   methods: {
     getTrip(gid) {
       let tempA = this.allfuelSort.findIndex((a) => a.id === gid);
-      let tempB = tempA < this.allfuelSort.length - 1 ? tempA + 1 : tempA;
+      let tempB =
+        tempA < this.allfuelSort.length - 1
+          ? tempA + 1
+          : tempA; /* check if index is not the first full tank */
       let tempC =
         Number(this.allfuelSort[tempA].odometer) -
         Number(this.allfuelSort[tempB].odometer);
